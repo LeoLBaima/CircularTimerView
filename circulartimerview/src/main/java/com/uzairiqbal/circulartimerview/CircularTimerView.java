@@ -116,9 +116,6 @@ public class CircularTimerView extends View {
         String bcfill = String.format("#%06X", (0xFFFFFF & backgroundColor));
         backgroundPaint.setColor(Color.parseColor(bcfill));
 
-        ta.recycle();
-
-
         textPaint = new TextPaint();
 
         if (ta.hasValue(R.styleable.TextAppearance_android_fontFamily)) {
@@ -126,6 +123,8 @@ public class CircularTimerView extends View {
             Typeface typeface = ResourcesCompat.getFont(context, fontId);
             textPaint.setTypeface(typeface);
         }
+        ta.recycle();
+
         textPaint.setColor(progressTextColor);
         String c = String.format("#%06X", (0xFFFFFF & progressTextColor));
         textPaint.setColor(Color.parseColor(c));
