@@ -118,10 +118,10 @@ public class CircularTimerView extends View {
 
         textPaint = new TextPaint();
 
-        if (ta.hasValue(R.styleable.TextAppearance_android_fontFamily)) {
-            int fontId = ta.getResourceId(R.styleable.TextAppearance_android_fontFamily, -1);
-            Typeface typeface = ResourcesCompat.getFont(context, fontId);
-            textPaint.setTypeface(typeface);
+
+        int fontFamilyId = ta.getResourceId(R.styleable.CircularTimerView_android_fontFamily, 0);
+        if (fontFamilyId > 0) {
+            textPaint.setTypeface(ResourcesCompat.getFont(getContext(), fontFamilyId));
         }
         ta.recycle();
 
