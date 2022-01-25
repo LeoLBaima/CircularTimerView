@@ -6,11 +6,14 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.os.CountDownTimer;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.core.content.res.ResourcesCompat;
 
 public class CircularTimerView extends View {
 
@@ -115,7 +118,14 @@ public class CircularTimerView extends View {
 
         ta.recycle();
 
+
         textPaint = new TextPaint();
+
+        if (ta.hasValue(R.styleable.TextAppearance_android_fontFamily)) {
+            int fontId = ta.getResourceId(R.styleable.TextAppearance_android_fontFamily, -1);
+            Typeface typeface = ResourcesCompat.getFont(context, fontId);
+            textPaint.setTypeface(typeface);
+        }
         textPaint.setColor(progressTextColor);
         String c = String.format("#%06X", (0xFFFFFF & progressTextColor));
         textPaint.setColor(Color.parseColor(c));

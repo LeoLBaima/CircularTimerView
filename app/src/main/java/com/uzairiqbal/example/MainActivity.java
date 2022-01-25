@@ -24,11 +24,6 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_circular);
         progressBar.setProgress(0);
 
-
-
-
-
-
         progressBar.setCircularTimerListener(new CircularTimerListener() {
             @Override
             public String updateDataOnTick(long remainingTimeInMs) {
