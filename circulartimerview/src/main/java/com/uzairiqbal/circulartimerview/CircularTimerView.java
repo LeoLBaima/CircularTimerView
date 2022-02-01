@@ -330,6 +330,10 @@ public class CircularTimerView extends View {
         invalidate();
     }
 
+    public void cancel() {
+        countDownTimer.cancel();
+    }
+
     public int getStartingAngle() {
         return startingAngle;
     }
