@@ -27,13 +27,10 @@
         app:backgroundColor="#e76130"
         app:progressBackgroundColor="#eee"
         app:backgroundWidth="5"
-        app:isClockwise="true"
+        app:isClockwise="false"
         app:textSize="18sp"
-        app:prefix="Time Left "
-        app:suffix=" sec"
-        app:progressText="Time Remaining..."
         app:maxValue="100"
-        app:startingPoint="bottom"
+        app:startingPoint="left"
         app:progressTextColor="#eee"/>
 
 

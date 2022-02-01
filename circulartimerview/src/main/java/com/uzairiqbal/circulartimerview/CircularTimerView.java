@@ -11,6 +11,7 @@ import android.os.CountDownTimer;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import androidx.core.content.res.ResourcesCompat;
@@ -33,7 +34,7 @@ public class CircularTimerView extends View {
         // create the Paint and set its color
 
     }
-    private float progress;
+    private double progress;
 
     private int progressColor;
     private int progressBackgroundColor;
@@ -200,16 +201,16 @@ public class CircularTimerView extends View {
 
     }
 
-    public void setProgress(float f) {
+    public void setProgress(Long f) {
         progress = f;
         invalidate();
     }
 
-    public float getProgress() {
+    public double getProgress() {
         return progress;
     }
 
-    public float getProgressPercentage() {
+    public double getProgressPercentage() {
         return progress / getMaxValue() * 100;
     }
 
@@ -385,7 +386,7 @@ public class CircularTimerView extends View {
         countDownTimer = new CountDownTimer(maxTime, intervalDuration) {
             @Override
             public void onTick(long l) {
-                float percent = (1 - (progress / 100));
+                double percent = (1 - (progress / 100));
                 l = (long) (l * percent);
                 double percentTimeCompleted = (maxTime - (l)) / (double) (maxTime);
                 drawUpto = (float) (maxValue * percentTimeCompleted);
@@ -446,7 +447,8 @@ public class CircularTimerView extends View {
         countDownTimer = new CountDownTimer(maxTime, timeinterval) {
             @Override
             public void onTick(long l) {
-                float percent = (1 - (progress / 100));
+                double percent = (1 - (progress / 100));
+                Log.i("Printei", "1 " + percent);
                 l = (long) (l * percent);
                 double percentTimeCompleted = (maxTime - (l)) / (double) (maxTime);
                 drawUpto = (float) (maxValue * percentTimeCompleted);
