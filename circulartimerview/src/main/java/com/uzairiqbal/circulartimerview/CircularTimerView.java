@@ -201,7 +201,7 @@ public class CircularTimerView extends View {
 
     }
 
-    public void setProgress(Long f) {
+    public void setProgress(Double f) {
         progress = f;
         invalidate();
     }

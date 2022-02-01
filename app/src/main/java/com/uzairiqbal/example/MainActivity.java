@@ -45,13 +45,13 @@ public class MainActivity extends AppCompatActivity {
         }, 15, TimeFormatEnum.MINUTES, 10);
 
         progressBar.startTimer();
-        progressBar.setProgress(50L);
+        progressBar.setProgress(50.0);
 
 
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressBar.setProgress(0L);
+                progressBar.setProgress(0.0);
                 progressBar.startTimer();
             }
         });
