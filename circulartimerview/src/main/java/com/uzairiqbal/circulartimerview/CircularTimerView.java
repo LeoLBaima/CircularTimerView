@@ -33,6 +33,7 @@ public class CircularTimerView extends View {
         // create the Paint and set its color
 
     }
+    private float progress;
 
     private int progressColor;
     private int progressBackgroundColor;
@@ -58,18 +59,18 @@ public class CircularTimerView extends View {
     public CircularTimerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.defStyleAttr = defStyleAttr;
+        setWillNotDraw(false);
         initPaints(context, attrs);
     }
 
     public CircularTimerView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
+        setWillNotDraw(false);
         initPaints(context, attrs);
     }
 
     private void initPaints(Context context, AttributeSet attrs) {
-
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CircularTimerView, defStyleAttr, 0);
-
         progressColor = ta.getColor(R.styleable.CircularTimerView_progressColor, Color.BLUE);
         backgroundColor = ta.getColor(R.styleable.CircularTimerView_backgroundColor, Color.GRAY);
         progressBackgroundColor = ta.getColor(R.styleable.CircularTimerView_progressBackgroundColor, Color.GRAY);
@@ -200,16 +201,16 @@ public class CircularTimerView extends View {
     }
 
     public void setProgress(float f) {
-        drawUpto = f;
+        progress = f;
         invalidate();
     }
 
     public float getProgress() {
-        return drawUpto;
+        return progress;
     }
 
     public float getProgressPercentage() {
-        return drawUpto / getMaxValue() * 100;
+        return progress / getMaxValue() * 100;
     }
 
     public void setProgressColor(int color) {
@@ -384,8 +385,9 @@ public class CircularTimerView extends View {
         countDownTimer = new CountDownTimer(maxTime, intervalDuration) {
             @Override
             public void onTick(long l) {
-
-                double percentTimeCompleted = ((maxTime - l) / (double) maxTime);
+                float percent = (1 - (progress / 100));
+                l = (long) (l * percent);
+                double percentTimeCompleted = (maxTime - (l)) / (double) (maxTime);
                 drawUpto = (float) (maxValue * percentTimeCompleted);
                 text = circularTimerListener.updateDataOnTick(l);
                 invalidate();
@@ -444,8 +446,9 @@ public class CircularTimerView extends View {
         countDownTimer = new CountDownTimer(maxTime, timeinterval) {
             @Override
             public void onTick(long l) {
-
-                double percentTimeCompleted = ((maxTime - l) / (double) maxTime);
+                float percent = (1 - (progress / 100));
+                l = (long) (l * percent);
+                double percentTimeCompleted = (maxTime - (l)) / (double) (maxTime);
                 drawUpto = (float) (maxValue * percentTimeCompleted);
                 text = circularTimerListener.updateDataOnTick(l);
                 invalidate();
