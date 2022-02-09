@@ -452,7 +452,6 @@ public class CircularTimerView extends View {
             @Override
             public void onTick(long l) {
                 double percent = (1 - (progress / 100));
-                Log.i("Printei", "1 " + percent);
                 l = (long) (l * percent);
                 double percentTimeCompleted = (maxTime - (l)) / (double) (maxTime);
                 drawUpto = (float) (maxValue * percentTimeCompleted);
